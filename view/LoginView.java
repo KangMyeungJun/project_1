@@ -68,8 +68,4 @@ public class LoginView extends JFrame {
 		return jbtLogin;
 	}
 
-	// main
-//	public static void main(String[] args) {
-//		new Login();
-//	}
 }// class
