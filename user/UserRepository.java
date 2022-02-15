@@ -15,30 +15,30 @@ import java.util.Map;
  */
 public class UserRepository {
 	
-	private static Map<String, User> userList = new HashMap<String, User>(); //static
-	
-	private static final UserRepository instance = new UserRepository(); //static
-	
+	private static final Map<String, User> userList = new HashMap<String, User>(); //static
+	//생성자 사용 불가
+	private UserRepository() {
+		userList.put("admin", new User("admin","1234",true));
+		userList.put("root", new User("root","1111",false));
+		userList.put("adminstrator", new User("adminstrator","12345",true));
+	}
+	private static UserRepository instance = new UserRepository(); //static
+//	private static final UserRepository instance = new UserRepository(); //static
+
 
 	/**
-	 * userList 비어있을시에만 초기값 입력<br>
 	 * getInstance로만 UserRepository 불러오기 가능
 	 * @return
 	 */
 	public static UserRepository getInstance() {
-		if (userList.isEmpty()) {
-			userList.put("admin", new User("admin","1234",true));
-			userList.put("root", new User("root","1111",false));
-			userList.put("adminstrator", new User("adminstrator","12345",true));
+		if (instance == null) {
+			instance = new UserRepository();
 		}
-		
 		return instance;
 		
 	}
 	
-	//생성자 사용 불가
-	private UserRepository() {
-	}
+
 	
 	/**
 	 * id를 넣으면 해당 User객체가 반환
